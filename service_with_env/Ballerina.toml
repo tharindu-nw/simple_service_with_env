@@ -1,6 +1,6 @@
 [package]
 org = "tharinduwe"
-name = "simple_service_with_env"
+name = "simple_service_with_secret"
 version = "0.1.0"
 distribution = "2201.8.2"
 
