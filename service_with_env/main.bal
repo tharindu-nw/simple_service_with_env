@@ -2,8 +2,13 @@ import ballerina/http;
 import ballerina/os;
 import ballerina/log;
 
-configurable string backendUrl = "http://localhost:9091/backend";
-final http:Client backendClient = check new (backendUrl);
+final http:Client backendClient = check new (os:getEnv("ServiceURL"),
+    auth = {
+        tokenUrl: os:getEnv("TokenURL"),
+        clientId: os:getEnv("ConsumerKey"),
+        clientSecret: os:getEnv("ConsumerSecret")
+    }
+);
 
 service /sample on new http:Listener(9090) {
     resource function get value() returns string|error {
