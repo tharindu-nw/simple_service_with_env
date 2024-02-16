@@ -1,0 +1,16 @@
+apiVersion: core.choreo.dev/v1beta1
+kind: ComponentConfig
+spec:
+  outbound:
+    serviceReferences:
+    - name: choreo:///jtuck/zkst/wsapxl/243a4/v1.0/ORGANIZATION
+      connectionConfig: 01eecc0a-34a4-1836-a3bb-8c1ebbdb47c7
+      env:
+      - from: ServiceURL
+        to: SVC_URL
+      - from: ConsumerKey
+        to: CONSUMER_KEY
+      - from: ConsumerSecret
+        to: CONSUMER_SECRET
+      - from: TokenURL
+        to: TOKEN_URL

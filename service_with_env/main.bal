@@ -2,11 +2,11 @@ import ballerina/http;
 import ballerina/os;
 import ballerina/log;
 
-final http:Client backendClient = check new (os:getEnv("ServiceURL"),
+final http:Client backendClient = check new (os:getEnv("SVC_URL"),
     auth = {
-        tokenUrl: os:getEnv("TokenURL"),
-        clientId: os:getEnv("ConsumerKey"),
-        clientSecret: os:getEnv("ConsumerSecret")
+        tokenUrl: os:getEnv("TOKEN_URL"),
+        clientId: os:getEnv("CONSUMER_KEY"),
+        clientSecret: os:getEnv("CONSUMER_SECRET")
     }
 );
 
