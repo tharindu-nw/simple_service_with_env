@@ -3,6 +3,7 @@ org = "tharinduwe"
 name = "social_media_service"
 version = "0.1.0"
 distribution = "2201.8.2"
+export=["social_media_service", "social_media_service.log_handler"]
 
 [build-options]
 observabilityIncluded = true
