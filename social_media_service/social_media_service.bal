@@ -2,6 +2,7 @@ import ballerina/http;
 import ballerina/time;
 
 import social_media_service.log_handler;
+import ballerina/os;
 
 type User record {|
     readonly int id;
@@ -25,7 +26,7 @@ table<User> key(id) usersTable = table [
     {id: 1, name: "Daniel", dateOfBirth: {year: 1990, month: 5, day: 12}, mobileNumber: "0771234567"}
 ];
 
-configurable string logSuffix = ?;
+// configurable string logSuffix = ?;
 
 service /social\-media on new http:Listener(9090) {
     resource function get users() returns User[]|error? {
@@ -34,7 +35,7 @@ service /social\-media on new http:Listener(9090) {
 
     resource function get users/[int id]() returns User|UserNotFound|error? {
         User? userResult = usersTable[id];
-        log_handler:logMessage(string `User with id ${id} requested. ${logSuffix}`);
+        log_handler:logMessage(string `User with id ${id} requested. ${os:getEnv("LOG_SUFFIX")}`);
         if userResult !is User {
             return <UserNotFound>{
                 body: {message: string `id: ${id}`, details: string `user/${id}`, timeStamp: time:utcNow()}
