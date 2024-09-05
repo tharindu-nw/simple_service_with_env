@@ -43,4 +43,12 @@ service /social\-media on new http:Listener(9090) {
 
         return userResult;
     }
+
+    resource function get env() returns json {
+        return {
+            value_1: "This",
+            value_2: "is",
+            value_3: "scripted"
+        };
+    }
 }
