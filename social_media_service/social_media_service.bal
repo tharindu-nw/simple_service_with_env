@@ -1,5 +1,6 @@
 import ballerina/http;
 import ballerina/time;
+import ballerina/log;
 
 import social_media_service.log_handler;
 
@@ -36,6 +37,7 @@ service /social\-media on new http:Listener(9090) {
         User? userResult = usersTable[id];
         log_handler:logMessage(string `User with id ${id} requested. ${logSuffix}`);
         if userResult !is User {
+            log:printError("User with user id: ${id} not found");
             return <UserNotFound>{
                 body: {message: string `id: ${id}`, details: string `user/${id}`, timeStamp: time:utcNow()}
             };
